@@ -1,13 +1,11 @@
-import { Imprimivel } from "../utils/imprimivel.js";
+import { Modelo } from "../interfaces/modelo.js";
 
-export class Negociacao extends Imprimivel{
+export class Negociacao implements Modelo<Negociacao>{
     constructor(
         private _data: Date, 
         public readonly quantidade: number, 
         public readonly valor: number
-    ) {
-        super();
-    }
+    ) {}
 
     public static criaDe(dataString: string, quantidadeString: string, valorString: string): Negociacao {
         const exp = /-/g;
@@ -24,6 +22,13 @@ export class Negociacao extends Imprimivel{
     public get data(): Date {
         const data = new Date(this._data.getTime());
         return data;
+    }
+
+    public ehIgual(negociacao: Negociacao): boolean{
+        return this.data.getDate() === negociacao.data.getDate() &&
+        this.data.getMonth() === negociacao.data.getMonth() &&
+        this.data.getFullYear() === negociacao.data.getFullYear();
+
     }
 
     public paraTexto(): string{

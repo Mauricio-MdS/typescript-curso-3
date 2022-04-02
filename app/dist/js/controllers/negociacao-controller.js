@@ -36,6 +36,11 @@ export class NegociacaoController {
     }
     importaDados() {
         this.negociacoesService.obterNegociacoesDoDia()
+            .then(negociacoesDeHoje => {
+            return negociacoesDeHoje.filter(negociacaoDeHoje => {
+                return !this.negociacoes.lista().some(negociacao => negociacao.ehIgual(negociacaoDeHoje));
+            });
+        })
             .then(negociacoesImportadas => {
             negociacoesImportadas.forEach(negociacao => {
                 this.negociacoes.adiciona(negociacao);
@@ -72,3 +77,4 @@ __decorate([
     logarTempoDeExecucao(),
     inspect
 ], NegociacaoController.prototype, "adiciona", null);
+//# sourceMappingURL=negociacao-controller.js.map

@@ -1,7 +1,5 @@
-import { Imprimivel } from '../utils/imprimivel.js';
-export class Negociacoes extends Imprimivel {
+export class Negociacoes {
     constructor() {
-        super(...arguments);
         this.negociacoes = [];
     }
     adiciona(negociacao) {
@@ -14,3 +12,4 @@ export class Negociacoes extends Imprimivel {
         return JSON.stringify(this.negociacoes, null, 2);
     }
 }
+//# sourceMappingURL=negociacoes.js.map
